@@ -35,7 +35,7 @@ public interface WdBase {
 	 * This method clicks on the WebElement like button to submit an action
 	 * @param ele is the WebElement which is clickable
 	 */
-	public void click(WebElement ele);
+	public void clickOn(WebElement ele);
 	
 	/**
 	 * This method selects an option from the dropdown using the visible text in the dropdown
@@ -109,7 +109,7 @@ public interface WdBase {
 	 * @param ele
 	 * @return
 	 */
-	public String getText(WebElement ele);
+	public String getTextFrom(WebElement ele);
 	
 	/**
 	 * This mehtod compares the Actual text with the Expected text

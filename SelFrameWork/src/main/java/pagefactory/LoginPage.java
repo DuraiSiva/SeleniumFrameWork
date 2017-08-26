@@ -15,8 +15,8 @@ public class LoginPage extends AbstractPage{
 	@FindBy(how = How.ID, using = "username")
 		WebElement uName;
 	
-	public LoginPage typeUserID(){
-		type(uName, "DemoSalesManager");
+	public LoginPage typeUserID(String userName){
+		type(uName, userName);
 		return this;
 	}
 	
@@ -27,8 +27,8 @@ public class LoginPage extends AbstractPage{
 			})*/
 	@FindBy(how = How.ID, using = "password")
 		WebElement pwd;
-	public LoginPage typePwd(){
-		type(pwd, "crmsfa");
+	public LoginPage typePwd(String passWord){
+		type(pwd, passWord);
 		return this;
 	}
 	
@@ -38,7 +38,7 @@ public class LoginPage extends AbstractPage{
 	})
 	WebElement loginButtton;
 	public CrmsfaPage clickLogin(){
-		click(loginButtton);
+		clickOn(loginButtton);
 		return new CrmsfaPage();
 	}
 		

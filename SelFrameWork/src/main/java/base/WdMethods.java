@@ -82,7 +82,7 @@ public class WdMethods extends WdEvent implements WdBase {
 		ele.clear();
 	}
 	
-	public void click(WebElement ele){
+	public void clickOn(WebElement ele){
 		
 		ele.click();
 		
@@ -124,7 +124,7 @@ public class WdMethods extends WdEvent implements WdBase {
 	//LinketHashSet --> Order of insertion 
 	
 	public void switchWindow(int index){
-		Set<String> allWindowHandles = driver.getWindowHandles();
+		Set<String> allWindowHandles = eventDriver.getWindowHandles();
 		List<String> allWindows = new ArrayList<String>();
 		allWindows.addAll(allWindowHandles);
 		if(index>=allWindows.size()){
@@ -139,9 +139,8 @@ public class WdMethods extends WdEvent implements WdBase {
 	}
 	
 	public void verifyTitle(String title){
-		boolean isTitle = false;
+		//boolean isTitle = false;
 		if(eventDriver.getTitle().equals(title)){
-			isTitle = true;
 			System.out.println( "Title is correct");
 		}
 		else
@@ -154,14 +153,17 @@ public class WdMethods extends WdEvent implements WdBase {
 		return attribute;
 	}
 	
-	public String getText(WebElement ele){
+	public String getTextFrom(WebElement ele){
 		String text = null;
-		text = ele.getText();
+		//s1.replaceAll("[^a-zA-Z0-9 ]", "")
+		text = ele.getText().replaceAll("[a-zA-Z ]", "");
+		System.out.println(text);
 		return text;
 	}
 	
 	public void verifyText(WebElement ele, String text){
 		//boolean isText = false;
+			System.out.println(ele.getText());
 			if((ele.getText().contains(text))){
 				System.out.println( "Company name has been updated");
 			}	

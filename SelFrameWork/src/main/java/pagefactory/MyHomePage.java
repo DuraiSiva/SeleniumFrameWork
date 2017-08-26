@@ -14,8 +14,15 @@ public class MyHomePage extends AbstractPage {
 	@FindBy(how = How.LINK_TEXT, using = "Leads")
 	WebElement leadsLink;
 	public MyLeadsPage cilckLeads(){
-		click(leadsLink);
+		clickOn(leadsLink);
 		return new MyLeadsPage();
+	}
+	
+	@FindBy(how = How.LINK_TEXT, using = "Create Lead")
+	WebElement createLeadLink;
+	public CreateLeadPage cilckCreateLeads(){
+		clickOn(createLeadLink);
+		return new CreateLeadPage();
 	}
 	
 	

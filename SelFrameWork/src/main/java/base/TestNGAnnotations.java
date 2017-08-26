@@ -12,9 +12,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 
 import base.WdMethods;
+import dataprovider.ExcelDataProvider;
 
 public class TestNGAnnotations extends WdMethods{
 	
+	public String dataSheetName;
 	@BeforeSuite
 	public void beforeSuite(){
 		System.out.println("BeforeSuite");
@@ -31,14 +33,11 @@ public class TestNGAnnotations extends WdMethods{
 		System.out.println("Before Groups");
 	}
 	
-	@BeforeClass
-	public void beforeClass(){
-		System.out.println("Before Class");
-	}
 	
-	@DataProvider
-	public void dataProvider(){
-		System.out.println("At Data Provider");
+	@DataProvider(name = "excelDataProvider")
+	public Object[][] getData(){
+		
+		return ExcelDataProvider.excelDataProvider("OpentapsData");
 	}
 
 	@BeforeMethod

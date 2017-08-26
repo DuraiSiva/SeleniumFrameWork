@@ -16,10 +16,28 @@ public class ViewLeadsPage extends AbstractPage{
 		return this;
 	}
 
-	@FindBy(how = How.XPATH, using = "Edit")
+	@FindBy(how = How.LINK_TEXT, using = "Edit")
 	WebElement editButton;
 	public EditLeadsPage clickEditButton(){
-		click(editButton);
+		clickOn(editButton);
 		return new EditLeadsPage();
 	}
+	
+	@FindBy(how = How.ID, using = "viewLead_companyName_sp")
+	WebElement companyNameText;
+	public ViewLeadsPage verifyPresenceOfCompanyName(String newCompanyName){
+		verifyText(companyNameText, newCompanyName);
+		return this;
+	}
+	
+	@FindBy(how = How.XPATH, using = "//span[contains(@id,'viewLead_companyName_sp')]")
+	WebElement leadIdAndCompanyName;
+	public ViewLeadsPage verifyLeadID(){
+		getTextFrom(leadIdAndCompanyName);
+		return new ViewLeadsPage();
+	}
+	
+	
+	
+	
 }

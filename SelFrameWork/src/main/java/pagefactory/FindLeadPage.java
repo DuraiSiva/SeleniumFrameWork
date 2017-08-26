@@ -10,23 +10,24 @@ public class FindLeadPage extends AbstractPage{
 		PageFactory.initElements(eventDriver, this);
 		}
 	
-		@FindBy(how = How.XPATH, using = "//input[@name='firstName'])[3]")
+		@FindBy(how = How.XPATH, using = "(//input[@name='firstName'])[3]")
 		WebElement firstNameInputBox;
-		public FindLeadPage typeFirstName(){
-			type(firstNameInputBox, "James");
+		public FindLeadPage typeFirstName(String firstName){
+			type(firstNameInputBox, firstName);
 			return this;
 		}
 		
 		@FindBy(how = How.XPATH, using = "//button[text()='Find Leads']")
 		WebElement findLeadsButton;
 		public FindLeadPage clickFindLeads(){
-			click(findLeadsButton);
+			clickOn(findLeadsButton);
 			return this;
 		}
 		
 		@FindBy(how = How.XPATH, using = "(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a")
 		WebElement firstLead;
 		public ViewLeadsPage clickFirstLead(){
+			clickOn(firstLead);
 			return new ViewLeadsPage();
 		}
 		

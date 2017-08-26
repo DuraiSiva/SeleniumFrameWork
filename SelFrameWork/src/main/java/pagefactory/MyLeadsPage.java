@@ -13,7 +13,7 @@ public class MyLeadsPage extends AbstractPage{
 	@FindBy(how = How.LINK_TEXT, using = "Find Leads")
 	WebElement findLeadsLink;
 	public FindLeadPage cilckFindLeads(){
-		click(findLeadsLink);
+		clickOn(findLeadsLink);
 		return new FindLeadPage();
 	}
 }

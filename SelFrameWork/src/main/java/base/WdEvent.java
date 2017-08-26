@@ -1,5 +1,7 @@
 package base;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.ElementNotSelectableException;
@@ -14,6 +16,8 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
 public class WdEvent implements WebDriverEventListener {
 
@@ -37,7 +41,8 @@ public class WdEvent implements WebDriverEventListener {
 
 	@Override
 	public void afterClickOn(WebElement ele, WebDriver driver) {
-		System.out.println("Elementhas been clicked");
+		
+		System.out.println("Element has been clicked");
 		
 	}
 
@@ -90,7 +95,8 @@ public class WdEvent implements WebDriverEventListener {
 	}
 
 	@Override
-	public void beforeChangeValueOf(WebElement arg0, WebDriver arg1, CharSequence[] arg2) {
+	public void beforeChangeValueOf(WebElement arg0, WebDriver driver, CharSequence[] arg2) {
+		
 		System.out.println("Before value is changed");
 		
 	}
@@ -103,6 +109,8 @@ public class WdEvent implements WebDriverEventListener {
 
 	@Override
 	public void beforeFindBy(By using, WebElement ele, WebDriver driver) {
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver);
+		fwait.withTimeout(16, TimeUnit.SECONDS).pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class, TimeoutException.class);
 		System.out.println("WebDriver is about to find the element");
 		
 	}

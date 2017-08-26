@@ -13,17 +13,18 @@ public class EditLeadsPage extends AbstractPage{
 	
 	@FindBy(how = How.XPATH, using = "(//div[@class='fieldgroup-body'])[1]/table/tbody/tr[1]/td[2]/input")
 	WebElement companyNameInputBox;
-	public EditLeadsPage changeCompanyName(){
+	public EditLeadsPage changeCompanyName(String newCompanyName){
 		clearText(companyNameInputBox);
-		type(companyNameInputBox,"Amazon");
+		type(companyNameInputBox, newCompanyName);
 		return this;
 	}
 	
-	@FindBy(how = How.XPATH, using = "(//div[@class='fieldgroup-body'])[1]/table/tbody/tr[1]/td[2]/input")
+	@FindBy(how = How.XPATH, using = "//div[@class='fieldgroup-body']/table/tbody/tr[12]/td[2]/input")
 	WebElement updateButton;
 	public ViewLeadsPage updateCompanyName(){
-		click(updateButton);
+		clickOn(updateButton);
 		return new ViewLeadsPage();
 	}
 
+	
 }

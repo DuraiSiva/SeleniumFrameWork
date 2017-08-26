@@ -15,7 +15,7 @@ public class CrmsfaPage extends AbstractPage{
 	@FindBy(how = How.LINK_TEXT, using = "CRM/SFA")
 		WebElement crmsfaLink;
 	public MyHomePage CRMSFAPage(){
-		click(crmsfaLink);
+		clickOn(crmsfaLink);
 		return new MyHomePage();
 	}
 	

@@ -1,29 +1,41 @@
 package pagetests;
 
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import base.TestNGAnnotations;
+import dataprovider.ExcelDataProvider;
 import pagefactory.LoginPage;
 
 public class TC002PageTest extends TestNGAnnotations {
 	
-	@Test
-	public void editLead(){
+	@BeforeClass
+	public void setValues(){
+		dataSheetName = "TC002";
+	}
+	
+	@Test(dataProvider = "excelDataProvider")
+	public void verifyCompanyNameUpdated(String userName, String passWord, String firstName, String newCompanyName){
 
 		new LoginPage().
-		typeUserID().
-		typePwd().
+		typeUserID(userName).
+		typePwd(passWord).
 		clickLogin().
 		CRMSFAPage().
 		cilckLeads().
 		cilckFindLeads().
-		typeFirstName().
+		typeFirstName(firstName).
 		clickFindLeads().
 		clickFirstLead().
 		verifyPageTitle().
 		clickEditButton().
-		changeCompanyName().
-		updateCompanyName();
+		changeCompanyName(newCompanyName).
+		updateCompanyName().
+		verifyPresenceOfCompanyName(newCompanyName);
+		
 	}
+	
+	
 
 }
