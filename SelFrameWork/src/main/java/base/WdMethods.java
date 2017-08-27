@@ -1,16 +1,20 @@
 package base;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 
 public class WdMethods extends WdEvent implements WdBase {
@@ -19,7 +23,7 @@ public class WdMethods extends WdEvent implements WdBase {
 	public WebDriver driver;
 	public static EventFiringWebDriver eventDriver;
 	
-	public void invokeApp(String browser, String Url){
+	/*public void invokeApp(String browser, String Url){
 		
 		switch(browser){
 		case("chrome"):
@@ -39,7 +43,7 @@ public class WdMethods extends WdEvent implements WdBase {
 			driver = new FirefoxDriver();
 			eventDriver.get(Url);
 		}	
-	}
+	}*/
 		
 	public WebElement locateElement(String locator, String using){
 		ele=null;
@@ -156,7 +160,7 @@ public class WdMethods extends WdEvent implements WdBase {
 	public String getTextFrom(WebElement ele){
 		String text = null;
 		//s1.replaceAll("[^a-zA-Z0-9 ]", "")
-		text = ele.getText().replaceAll("[a-zA-Z ]", "");
+		text = ele.getText().replaceAll("[^a-zA-Z ]", "");
 		System.out.println(text);
 		return text;
 	}
@@ -181,5 +185,21 @@ public class WdMethods extends WdEvent implements WdBase {
 		eventDriver.close();
 		
 	}
+	
+	public long takeSnap(){
+		
+		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L;
+		File src = eventDriver.getScreenshotAs(OutputType.FILE);
+		try{
+			FileUtils.copyFile(src, new File("./reports/snaps/snap"+number+".jpg")); 
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+			
+		return number;
+	}
+
+	
 
 }

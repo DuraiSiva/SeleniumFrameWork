@@ -32,7 +32,7 @@ public class ViewLeadsPage extends AbstractPage{
 	
 	@FindBy(how = How.XPATH, using = "//span[contains(@id,'viewLead_companyName_sp')]")
 	WebElement leadIdAndCompanyName;
-	public ViewLeadsPage verifyLeadID(){
+	public ViewLeadsPage getLeadID(){
 		getTextFrom(leadIdAndCompanyName);
 		return new ViewLeadsPage();
 	}

@@ -8,7 +8,7 @@ public interface WdBase {
 	 * @param browser can be chrome or firefox or ie
 	 * @param Url can be http: or https: or file
 	 */
-	public void invokeApp(String browser, String Url);
+	//public void invokeApp(String browser, String Url);
 	
 	/**
 	 * This method finds and locates the WebElement using the locator and its value

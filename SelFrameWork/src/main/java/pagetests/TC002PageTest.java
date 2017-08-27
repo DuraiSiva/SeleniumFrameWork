@@ -13,6 +13,10 @@ public class TC002PageTest extends TestNGAnnotations {
 	@BeforeClass
 	public void setValues(){
 		dataSheetName = "TC002";
+		testCaseName = "Edit Lead";
+		testDescription = "Edit the Lead name";
+		category = "regression";
+		authors = "Durai";
 	}
 	
 	@Test(dataProvider = "excelDataProvider")
@@ -32,7 +36,7 @@ public class TC002PageTest extends TestNGAnnotations {
 		clickEditButton().
 		changeCompanyName(newCompanyName).
 		updateCompanyName().
-		verifyPresenceOfCompanyName(newCompanyName);
+		verifyPresenceOfCompanyName(newCompanyName); 
 		
 	}
 	

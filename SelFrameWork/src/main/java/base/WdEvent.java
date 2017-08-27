@@ -15,52 +15,56 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
-public class WdEvent implements WebDriverEventListener {
+import reporter.ExtentReporter;
 
+public abstract class WdEvent extends ExtentReporter implements WebDriverEventListener {
+		
 	@Override
 	public void afterAlertAccept(WebDriver arg0) {
-		System.out.println("After the alert is accepted");
+		reportStep(("After the alert is accepted"),"");
 		
 	}
 
 	@Override
-	public void afterAlertDismiss(WebDriver arg0) {
-		System.out.println("After alert is dismissed");
+	public void afterAlertDismiss(WebDriver driver) {
+		reportStep(("After alert is dismissed"),"PASS");
 				
 	}
 
 	@Override
-	public void afterChangeValueOf(WebElement arg0, WebDriver arg1, CharSequence[] arg2) {
-		System.out.println("After value is changed");
+	public void afterChangeValueOf(WebElement ele, WebDriver driver, CharSequence[] arg2) {
+		
+		reportStep((arg2 +" After value is changed"),"PASS");
 		
 	}
 
 	@Override
 	public void afterClickOn(WebElement ele, WebDriver driver) {
 		
-		System.out.println("Element has been clicked");
+		reportStep(("Element has been clicked"),"PASS");
 		
 	}
 
 	@Override
 	public void afterFindBy(By using, WebElement ele, WebDriver driver) {
-		System.out.println("The element was located by ");
+		reportStep(("The element was located by "),"PASS");
 		
 	}
 
 	@Override
 	public void afterNavigateBack(WebDriver driver) {
-		System.out.println("After navigate back");
+		reportStep(("After navigate back"),"PASS");
 		
 	}
 
 	@Override
 	public void afterNavigateForward(WebDriver driver) {
-		System.out.println("After navigate forward");
+		reportStep(("After navigate forward"),"PASS");
 		
 	}
 
@@ -97,13 +101,14 @@ public class WdEvent implements WebDriverEventListener {
 	@Override
 	public void beforeChangeValueOf(WebElement arg0, WebDriver driver, CharSequence[] arg2) {
 		
-		System.out.println("Before value is changed");
+		reportStep(("Before value is changed"),"PASS");
 		
 	}
 
 	@Override
 	public void beforeClickOn(WebElement arg0, WebDriver arg1) {
-		System.out.println("Before clicked on the eleement");
+		
+		reportStep(("Before the Element has been clicked"),"PASS");
 		
 	}
 
@@ -170,4 +175,15 @@ public class WdEvent implements WebDriverEventListener {
 			
 	}
 
-}
+	@Override
+	public EventFiringWebDriver getEventDriver() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public abstract long takeSnap();
+	
+	}
+
+
